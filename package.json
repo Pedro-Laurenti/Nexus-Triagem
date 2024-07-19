@@ -21,7 +21,7 @@
         "build": "npm run clean && tsc && vite build && electron-builder",
         "build:unpack": "npm run clean && vite build && electron-builder --dir",
         "build:win": "npm run clean && vite build && electron-builder --win",
-        "build:mac": "npm run clean && vite build && electron-builder --mac",
+        "build:mac": "npm run clean && electron-builder --mac",
         "build:linux": "vite build && electron-builder --linux"
     },
     "dependencies": {
