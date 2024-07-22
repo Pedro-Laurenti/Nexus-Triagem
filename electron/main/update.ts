@@ -1,9 +1,9 @@
 import { app, ipcMain } from 'electron'
 import { createRequire } from 'node:module'
 import type {
-  ProgressInfo,
-  UpdateDownloadedEvent,
-  UpdateInfo,
+    ProgressInfo,
+    UpdateDownloadedEvent,
+    UpdateInfo,
 } from 'electron-updater'
 
 const { autoUpdater } = createRequire(import.meta.url)('electron-updater');

@@ -13,11 +13,9 @@
     },
     "type": "module",
     "scripts": {
-        "clean": "rimraf dist-electron && rimraf dist && rimraf out && rimraf release && rimraf playwright-report && rimraf test-results",
-        "e2e": "playwright test",
+        "clean": "rimraf dist-electron && rimraf dist && rimraf out && rimraf release && rimraf test-results",
         "dev": "vite",
         "preview": "vite preview",
-        "pree2e": "vite build --mode=test",
         "build": "npm run clean && tsc && vite build && electron-builder",
         "build:unpack": "npm run clean && vite build && electron-builder --dir",
         "build:win": "npm run clean && vite build && electron-builder --win",
@@ -40,7 +38,6 @@
         "vite-plugin-compression": "^0.5.1"
     },
     "devDependencies": {
-        "@playwright/test": "^1.42.1",
         "@types/react": "^18.2.64",
         "@types/react-dom": "^18.2.21",
         "@vitejs/plugin-react": "^4.2.1",

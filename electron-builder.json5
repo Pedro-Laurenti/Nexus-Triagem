@@ -27,7 +27,7 @@
             ]
         }
         ],
-        "artifactName": "${productName}_${version}.${ext}"
+        "artifactName": "${productName}.${ext}"
     },
     "linux":{
         "target": [
