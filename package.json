@@ -1,6 +1,6 @@
 {
     "name": "formulario-triagem",
-    "version": "2.5.1",
+    "version": "2.5.2",
     "description": "Formulário de triagem infantil para avaliações.",
     "main": "dist-electron/main/index.js",
     "author": "Pedro Laurenti",
@@ -23,8 +23,6 @@
         "build:linux": "vite build && electron-builder --linux"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-build-classic": "^41.4.2",
-        "@ckeditor/ckeditor5-react": "^7.0.0",
         "@electron-toolkit/utils": "^3.0.0",
         "@react-input/mask": "^1.2.5",
         "autoprefixer": "^10.4.19",
@@ -38,10 +36,13 @@
         "vite-plugin-compression": "^0.5.1"
     },
     "devDependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^41.4.2",
+        "@ckeditor/ckeditor5-react": "^7.0.0",
         "@types/react": "^18.2.64",
         "@types/react-dom": "^18.2.21",
         "@vitejs/plugin-react": "^4.2.1",
         "autoprefixer": "^10.4.18",
+        "ckeditor5": "^42.0.1",
         "electron": "^29.1.1",
         "electron-builder": "^24.13.3",
         "postcss": "^8.4.35",

@@ -69,36 +69,40 @@ function useLoading() {
         .app-loading-wrap {
             position: absolute;
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content:space-between;
+            justify-content: space-around;
             background: rgba(40, 44, 52, 0.8);
-            padding: 50px;
             z-index: 9;
             opacity: 1;
-            transition: opacity 1s;
+            bottom:0;
+            transition: opacity 0.5s;
             width: 100%;
         }
         .App {
             opacity: 0;
-            transition: opacity 1s;
+            transition: opacity 0.5s;
         }
         .fade-in {
             opacity: 1 !important;
         }
+
         .fade-out {
-            opacity: 0 !important;
-            animation: fadeOut 1s forwards;
+            opacity: 1;
+            animation: fadeOut 0.2s forwards;
         }
+
         .success-message {
             color: #fff;
             font-size: 1rem;
-            margin-right: 10px;
             opacity: 0;
-            transition: opacity 1s;
-            transition: 1s;
 
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            transition: opacity 0.2s;
+            transition: 0.2s;
         }
+
         .message-visible {
             opacity: 1;
         }
@@ -161,7 +165,7 @@ function useLoading() {
                             safeDOM.remove(document.body, appLoadingWrap);
                         }, 1000); // Delay to match fade-out animation
                     }, 2000); // Delay to show the success message
-                }, 2000); // Delay to show the success message after the icon
+                }, 3000); // Delay to show the success message after the icon
             }
         },
     };
@@ -173,7 +177,7 @@ const { appendLoading, removeLoading } = useLoading();
 domReady().then(() => {
     appendLoading();
     setTimeout(() => {
-        // removeLoading();
+        removeLoading();
         setTimeout(() => {
             const content = document.querySelector('.App') as HTMLElement;
             if (content) {
@@ -181,18 +185,18 @@ domReady().then(() => {
                 content.classList.remove('hidden');
             }
         }, 1000); // Delay to match fade-in animation of the loader
-    }, 4000); // Minimum delay to keep the pre-loader visible (2 seconds for the icon + 2 seconds for the message)
+    }, 2000); // Minimum delay to keep the pre-loader visible (2 seconds for the icon + 2 seconds for the message)
 });
 
 window.onmessage = (ev) => {
     if (ev.data.payload === 'removeLoading') {
-        // removeLoading();
+        removeLoading();
         setTimeout(() => {
             const content = document.querySelector('.App') as HTMLElement;
             if (content) {
                 content.classList.add('fade-in');
                 content.classList.remove('hidden');
             }
-        }, 1000); // Delay to match fade-in animation of the loader
+        }, 5000); // Delay to match fade-in animation of the loader
     }
 };
