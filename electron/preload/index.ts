@@ -23,10 +23,13 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 // --------- Preload scripts loading ---------
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
     return new Promise(resolve => {
+        console.log('Checking document ready state...');
         if (condition.includes(document.readyState)) {
+            console.log('Document is ready:', document.readyState);
             resolve(true);
         } else {
             document.addEventListener('readystatechange', () => {
+                console.log('Document ready state changed:', document.readyState);
                 if (condition.includes(document.readyState)) {
                     resolve(true);
                 }
@@ -77,7 +80,7 @@ function useLoading() {
             transition: opacity 0.5s;
             width: 100%;
         }
-        .App {
+        .APPCONTEUDO {
             opacity: 0;
             transition: opacity 0.5s;
         }
@@ -166,6 +169,8 @@ function useLoading() {
                         }, 1000); // Delay to match fade-out animation
                     }, 2000); // Delay to show the success message
                 }, 3000); // Delay to show the success message after the icon
+            } else {
+                console.log('Loading screen elements not found.');
             }
         },
     };
@@ -179,10 +184,13 @@ domReady().then(() => {
     setTimeout(() => {
         removeLoading();
         setTimeout(() => {
-            const content = document.querySelector('.App') as HTMLElement;
+            const content = document.querySelector('.APPCONTEUDO') as HTMLElement;
             if (content) {
+                console.log('Showing content...');
                 content.classList.add('fade-in');
                 content.classList.remove('hidden');
+            } else {
+                console.log('Content element not found.');
             }
         }, 1000); // Delay to match fade-in animation of the loader
     }, 2000); // Minimum delay to keep the pre-loader visible (2 seconds for the icon + 2 seconds for the message)
@@ -192,10 +200,13 @@ window.onmessage = (ev) => {
     if (ev.data.payload === 'removeLoading') {
         removeLoading();
         setTimeout(() => {
-            const content = document.querySelector('.App') as HTMLElement;
+            const content = document.querySelector('.APPCONTEUDO') as HTMLElement;
             if (content) {
+                console.log('Showing content after message event...');
                 content.classList.add('fade-in');
                 content.classList.remove('hidden');
+            } else {
+                console.log('Content element not found after message event.');
             }
         }, 5000); // Delay to match fade-in animation of the loader
     }

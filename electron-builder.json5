@@ -27,7 +27,8 @@
             ]
         }
         ],
-        "artifactName": "${productName}.${ext}"
+        "artifactName": "${productName}.${ext}",
+        "icon": "./build/icon.ico",
     },
     "linux":{
         "target": [
@@ -41,9 +42,9 @@
     },
     "nsis": {
         "oneClick": false,
-        "perMachine": false,
+        "perMachine": true,
         "allowToChangeInstallationDirectory": true,
-        "deleteAppDataOnUninstall": false
+        "deleteAppDataOnUninstall": true
     },
     "publish": {
         "provider": "generic",
