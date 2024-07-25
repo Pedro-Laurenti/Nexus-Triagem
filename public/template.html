@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triagem - {{nome}}</title>
+    <title>Triagem - {{identificaçãoNomePaciente}}</title>
     <style>
         html, body {
             font-family: Arial, sans-serif;
@@ -113,75 +113,75 @@
         </div>
         <h3>Identificação de Autoria:</h3>
         <div class="field">
-            <label for="nome">Profissional:</label>
-            <input id="nome" type="text" value="{{ProfissionalNome}}" readonly />
+            <label for="profissionalNome">Profissional:</label>
+            <input id="profissionalNome" type="text" value="{{profissionalNome}}" readonly />
         </div>
         <div class="field">
-            <label for="nome">Especialidade:</label>
-            <input id="nome" type="text" value="{{ProfissionalEspecialidade}}" readonly />
+            <label for="profissionalNome">Especialidade:</label>
+            <input id="profissionalNome" type="text" value="{{profissionalEspecialidade}}" readonly />
         </div>
         <div class="field">
-            <label for="nome">Nº do Conselho:</label>
-            <input id="nome" type="text" value="{{ProfissionalNdoConselho}}" readonly />
+            <label for="profissionalNome">Nº do Conselho:</label>
+            <input id="profissionalNome" type="text" value="{{profissionalNdoConselho}}" readonly />
         </div>
         <div class="field">
-            <label for="nome">Formação:</label>
-            <input id="nome" type="text" value="{{ProfissionalFormação}}" readonly />
+            <label for="profissionalNome">Formação:</label>
+            <input id="profissionalNome" type="text" value="{{profissionalFormacao}}" readonly />
         </div>
 
         <h3>Identificação do Paciente:</h3>
         <div class="field">
-            <label for="nome">Nome do paciente:</label>
-            <input id="nome" type="text" value="{{nome}}" />
+            <label for="identificaçãoNomePaciente">Nome do paciente:</label>
+            <input id="identificaçãoNomePaciente" type="text" value="{{identificaçãoNomePaciente}}" />
         </div>
         <div class="field">
-            <label for="dataNascimento">Data de nascimento:</label>
-            <input id="dataNascimento" type="date" value="{{dataNascimento}}" readonly />
+            <label for="identificaçãoDataNascimentoPaciente">Data de nascimento:</label>
+            <input id="identificaçãoDataNascimentoPaciente" type="date" value="{{identificaçãoDataNascimentoPaciente}}" readonly />
         </div>
         <div class="field">
-            <label for="peso">Peso:</label>
-            <input id="peso" type="text" value="{{peso}}" readonly />
+            <label for="identificaçãoPesoPaciente">Peso:</label>
+            <input id="identificaçãoPesoPaciente" type="text" value="{{identificaçãoPesoPaciente}}" readonly />
         </div>
         <div class="field">
-            <label for="altura">Altura:</label>
-            <input id="altura" type="text" value="{{altura}}" readonly />
+            <label for="identificaçãoAlturaPaciente">Altura:</label>
+            <input id="identificaçãoAlturaPaciente" type="text" value="{{identificaçãoAlturaPaciente}}" readonly />
         </div>
         <div class="field">
-            <label for="nomePai">Nome do pai:</label>
-            <input id="nomePai" type="text" value="{{nomePai}}" readonly />
+            <label for="identificaçãoNomePaiPaciente">Nome do pai:</label>
+            <input id="identificaçãoNomePaiPaciente" type="text" value="{{identificaçãoNomePaiPaciente}}" readonly />
         </div>
         <div class="field">
-            <label for="nomeMãe">Nome da mãe:</label>
-            <input id="nomeMãe" type="text" value="{{nomeMãe}}" readonly />
+            <label for="identificaçãoNomeMãePaciente">Nome da mãe:</label>
+            <input id="identificaçãoNomeMãePaciente" type="text" value="{{identificaçãoNomeMãePaciente}}" readonly />
         </div>
         <div class="field">
             <label for="contato">Contato dos responsáveis:</label>
             <input id="contato" type="text" value="{{contato}}" readonly />
         </div>
         <div class="field">
-            <label for="irmãos">Irmãos:</label>
-            <input id="irmãos" type="text" value="{{irmãos}}" readonly />
+            <label for="identificaçãoIrmaosPacientePaciente">Irmãos:</label>
+            <input id="identificaçãoIrmaosPacientePaciente" type="text" value="{{identificaçãoIrmaosPacientePaciente}}" readonly />
         </div>
 
         <h2>2. DIAGNÓSTICO/HIPÓTESE DIAGNÓSTICA</h2>
         <div class="field-ver">
             <label>
-                <input type="radio" name="radio1" value="Sem indicação diagnóstica" {{Radio1IndicaçãoDiagnóstica}} />
+                <input type="radio" name="radio1" value="Sem indicação diagnóstica" {{diagnosticoIndicaçãoDiagnóstica}} />
                 Sem indicação diagnóstica
             </label>
             <label>
-                <input type="radio" name="radio1" value="Hipótese diagnóstica" {{Radio1HipóteseDiagnóstica}} />
+                <input type="radio" name="radio1" value="Hipótese diagnóstica" {{diagnosticoHipoteseDiagnostica}} />
                 Hipótese diagnóstica
             </label>
             <label>
-                <input type="radio" name="radio1" value="Diagnóstico concluído" {{Radio1DiagnósticoConcluido}} />
+                <input type="radio" name="radio1" value="Diagnóstico concluído" {{diagnosticoDiagnosticoConcluido}} />
                 Diagnóstico concluído
             </label>
         </div>
 
         <div class="field">
-            <label for="observacoesDiagnosticos">Observações médicas:</label>
-            <input id="peso" type="text" value="{{observacoesDiagnosticos}}" readonly />
+            <label for="diagnosticoObservacoesDiagnosticos">Observações médicas:</label>
+            <input id="identificaçãoPesoPaciente" type="text" value="{{diagnosticoObservacoesDiagnosticos}}" readonly />
         </div>
 
         <h2>3. DISCIPLINAS REQUERIDAS</h2>        
@@ -191,12 +191,12 @@
 
         <h2>4. HISTÓRICO DE ACOMPANHAMENTO</h2>
         <div class="field">
-            <label for="NomeEncaminhadoPor">Encaminhado por:</label>
-            <input id="NomeEncaminhadoPor" type="text" value="{{NomeEncaminhadoPor}}" readonly />
+            <label for="historicoAcompanhamentosNomeEncaminhadoPor">Encaminhado por:</label>
+            <input id="historicoAcompanhamentosNomeEncaminhadoPor" type="text" value="{{historicoAcompanhamentosNomeEncaminhadoPor}}" readonly />
         </div>
         <div class="field">
-            <label for="DataUltimaConsulta">Data da última consulta:</label>
-            <input id="DataUltimaConsulta" type="date" value="{{DataUltimaConsulta}}" readonly />
+            <label for="historicoAcompanhamentosDataUltimaConsulta">Data da última consulta:</label>
+            <input id="historicoAcompanhamentosDataUltimaConsulta" type="date" value="{{historicoAcompanhamentosDataUltimaConsulta}}" readonly />
         </div>
         
         <div class="field">
@@ -209,47 +209,47 @@
         <div class="field">
             <h3>Observações acerca dos acompanhamentos anteriores:</h3>
             <div class="false-input-text">
-                {{observacoesAcompanhamentosAnteriores}}
+                {{historicoAcompanhamentoshistoricoGestacionalObservacoesAcompanhamentosAnteriores}}
             </div>
         </div>
 
         <h2>5. DEMANDAS PRINCIPAIS RELATADAS</h2>
         <div class="field">
             <div class="false-input-text">
-                <div class="demandas-princ">{{DemandasPrincipais}}</div>
+                <div class="demandas-princ">{{demandasPrincipais}}</div>
             </div>
         </div>
 
         <h2>6. HISTÓRICO GESTACIONAL E NATAL</h2>
         <div class="field">
-            <label for="selectedGestacao">Semanas de gestação:</label>
-            <input id="selectedGestacao" type="text" value="{{selectedGestacao}}" readonly />
+            <label for="historicoGestacionalIdadeParto">Semanas de gestação:</label>
+            <input id="historicoGestacionalIdadeParto" type="text" value="{{historicoGestacionalIdadeParto}}" readonly />
         </div>
 
         <div class="field">
-            <label for="selectedParto">Tipo de parto:</label>
-            <input id="selectedParto" type="text" value="{{selectedParto}}" readonly />
+            <label for="historicoGestacionalTipoParto">Tipo de parto:</label>
+            <input id="historicoGestacionalTipoParto" type="text" value="{{historicoGestacionalTipoParto}}" readonly />
         </div>
 
         <div class="field-ver">
             <div class="field">
-                <label for="Apgar1">Apgar 1 minuto:</label>
-                <input id="Apgar1" type="text" value="{{Apgar1}}" readonly />
+                <label for="historicoGestacionalApgar1">Apgar 1 minuto:</label>
+                <input id="historicoGestacionalApgar1" type="text" value="{{historicoGestacionalApgar1}}" readonly />
             </div>
             <div class="field">
-                <label for="Apgar2">Apgar 5 minutos:</label>
-                <input id="Apgar2" type="text" value="{{Apgar2}}" readonly />
+                <label for="historicoGestacionalApgar2">Apgar 5 minutos:</label>
+                <input id="historicoGestacionalApgar2" type="text" value="{{historicoGestacionalApgar2}}" readonly />
             </div>
         </div>
 
         <div class="field-ver">
             <div class="field">
-                <label for="PesoAoNascer">Peso ao nascer:</label>
-                <input id="PesoAoNascer" type="text" value="{{PesoAoNascer}}" readonly />
+                <label for="historicoGestacionalPesoAoNascer">Peso ao nascer:</label>
+                <input id="historicoGestacionalPesoAoNascer" type="text" value="{{historicoGestacionalPesoAoNascer}}" readonly />
             </div>
             <div class="field">
-                <label for="AlturaAoNascer">Altura ao nascer:</label>
-                <input id="AlturaAoNascer" type="text" value="{{AlturaAoNascer}}" readonly />
+                <label for="historicoGestacionalAlturaAoNascer">Altura ao nascer:</label>
+                <input id="historicoGestacionalAlturaAoNascer" type="text" value="{{historicoGestacionalAlturaAoNascer}}" readonly />
             </div>
         </div>
 

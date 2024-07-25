@@ -17,43 +17,43 @@ const FormSection3: React.FC<FormSection3Props> = ({ inputRefs }) => {
                     TittleInput={"Psicologia"}
                     NameCheckInput={"disciplinas"}
                     IdCheckInput={"Psicologia"}
-                    inputRef={inputRefs.DisciplinasReqPsicologia}
+                    inputRef={inputRefs.disciplinasReqPsicologia}
                 />
                 <CheckBoxInput
                     TittleInput={"Terapia ocupacional"}
                     NameCheckInput={"disciplinas"}
                     IdCheckInput={"TerapiaOcupacional"}
-                    inputRef={inputRefs.DisciplinasReqTerapiaOcupacional}
+                    inputRef={inputRefs.disciplinasReqTerapiaOcupacional}
                 />
                 <CheckBoxInput
                     TittleInput={"Fisioterapia"}
                     NameCheckInput={"disciplinas"}
                     IdCheckInput={"Fisioterapia"}
-                    inputRef={inputRefs.DisciplinasReqFisioterapia}
+                    inputRef={inputRefs.disciplinasReqFisioterapia}
                 />
                 <CheckBoxInput
                     TittleInput={"Musicoterapia"}
                     NameCheckInput={"disciplinas"}
                     IdCheckInput={"Musicoterapia"}
-                    inputRef={inputRefs.DisciplinasReqMusicoterapia}
+                    inputRef={inputRefs.disciplinasReqMusicoterapia}
                 />
                 <CheckBoxInput
                     TittleInput={"Fonoaudiologia"}
                     NameCheckInput={"disciplinas"}
                     IdCheckInput={"Fonoaudiologia"}
-                    inputRef={inputRefs.DisciplinasReqFonoaudiologia}
+                    inputRef={inputRefs.disciplinasReqFonoaudiologia}
                 />
                 <CheckBoxInput
                     TittleInput={"Neuropsicologia"}
                     NameCheckInput={"disciplinas"}
                     IdCheckInput={"Neuropsicologia"}
-                    inputRef={inputRefs.DisciplinasReqNeuropsicologia}
+                    inputRef={inputRefs.disciplinasReqNeuropsicologia}
                 />
                 <CheckBoxInput
                     TittleInput={"Psicomotricidade"}
                     NameCheckInput={"disciplinas"}
                     IdCheckInput={"Psicomotricidade"}
-                    inputRef={inputRefs.DisciplinasReqPsicomotricidade}
+                    inputRef={inputRefs.disciplinasReqPsicomotricidade}
                 />
             </div>
         </div>

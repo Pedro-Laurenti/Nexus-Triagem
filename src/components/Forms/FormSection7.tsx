@@ -17,8 +17,8 @@ interface FormSection7Props {
     };
 }
 
-const FormSection7 = forwardRef(({ inputRefs }: FormSection7Props, ref) => {
-    const [selects, setSelects] = useState<SelectOption[]>([
+const FormSection7: React.FC<FormSection7Props> = ({ inputRefs }) => {
+    const [selects] = useState<SelectOption[]>([
         {
             id: '1',
             label: 'Audiológicos',
@@ -71,22 +71,14 @@ const FormSection7 = forwardRef(({ inputRefs }: FormSection7Props, ref) => {
         }
     ]);
 
-    const handleSelectUpdate = (updatedSelects: SelectOption[]) => {
-        setSelects(updatedSelects);
-    };
-
-    useImperativeHandle(ref, () => ({
-        getData: () => selects
-    }));
-
     return (
         <div>
             <TittleForm Tittle={'7. HISTÓRICO DE SAÚDE'} />
             <div className="py-2 px-8 mb-4">
-                <ExamesSelect initialSelects={selects} onUpdate={handleSelectUpdate} />
+                <ExamesSelect initialSelects={selects} inputRefs={inputRefs.historicoSaude} />
             </div>
         </div>
     );
-});
+};
 
 export default FormSection7;

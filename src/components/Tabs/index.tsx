@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface TabProps {
     title: string;
@@ -10,7 +10,8 @@ interface TabProps {
 const Tab: React.FC<TabProps> = ({ title, index, setSelectedTab, selectedTab }) => {
     return (
         <button
-            className={`p-2 ${selectedTab === index ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`} onClick={() => setSelectedTab(index)}
+            className={`p-2 ${selectedTab === index ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+            onClick={() => setSelectedTab(index)}
         >
             {title}
         </button>
@@ -33,4 +34,4 @@ const Tabs: React.FC<TabsProps> = ({ tabs, selectedTab, setSelectedTab }) => {
     );
 };
 
-export default Tabs
+export default Tabs;

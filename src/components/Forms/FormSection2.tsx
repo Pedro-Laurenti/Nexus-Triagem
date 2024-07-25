@@ -19,19 +19,19 @@ const FormSection2: React.FC<FormSection2Props> = ({ inputRefs }) => {
                     TittleInput={'Sem indicação diagnóstica'}
                     NameRadioInput={'diagnostico'}
                     IdRadioInput={'diagnostico'}
-                    inputRef={inputRefs.Radio1IndicaçãoDiagnóstica}
+                    inputRef={inputRefs.diagnosticoIndicaçãoDiagnóstica}
                 />
                 <RadioInput
                     TittleInput={'Hipótese diagnóstica'}
                     NameRadioInput={'diagnostico'}
                     IdRadioInput={'diagnostico'}
-                    inputRef={inputRefs.Radio1HipóteseDiagnóstica}
+                    inputRef={inputRefs.diagnosticoHipoteseDiagnostica}
                 />
                 <RadioInput
                     TittleInput={'Diagnóstico concluído'}
                     NameRadioInput={'diagnostico'}
                     IdRadioInput={'diagnostico'}
-                    inputRef={inputRefs.Radio1DiagnósticoConcluido}
+                    inputRef={inputRefs.diagnosticoDiagnosticoConcluido}
                 />
             </div>
 
@@ -39,7 +39,7 @@ const FormSection2: React.FC<FormSection2Props> = ({ inputRefs }) => {
                 <SimpleTextInput
                     TittleInput={'Observações sobre o diagnóstico'}
                     placeholder={'Escreva as observações aqui.'}
-                    inputRef={inputRefs.observacoesDiagnosticos}
+                    inputRef={inputRefs.diagnosticoObservacoesDiagnosticos}
                 />
             </div>
         </div>

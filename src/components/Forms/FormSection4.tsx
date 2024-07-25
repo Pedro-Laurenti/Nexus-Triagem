@@ -19,11 +19,11 @@ const FormSection4: React.FC<FormSection4Props> = ({ inputRefs }) => {
                 <InlineInput
                     TittleInput={'Encaminhado por'}
                     PlaceHolder={'Nome'}
-                    inputRef={inputRefs.NomeEncaminhadoPor}
+                    inputRef={inputRefs.historicoAcompanhamentosNomeEncaminhadoPor}
                 />
                 <DateInput
                     TittleInput={'Data da última consulta'}
-                    inputRef={inputRefs.DataUltimaConsulta}
+                    inputRef={inputRefs.historicoAcompanhamentosDataUltimaConsulta}
                 />
 
                 <span className="mt-5">Acompanhamentos profissionais já realizados anteriormente</span>
@@ -32,80 +32,80 @@ const FormSection4: React.FC<FormSection4Props> = ({ inputRefs }) => {
                         TittleInput={'Psicologia'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProPsicologia}
+                        inputRef={inputRefs.historicoAcompanhamentosProPsicologia}
                     />
                     <CheckBoxInput
                         TittleInput={'Fonoaudiologia'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProFonoaudiologia}
+                        inputRef={inputRefs.historicoAcompanhamentosProFonoaudiologia}
                     />
                     <CheckBoxInput
                         TittleInput={'Terapia ocupacional'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProTerapiaOcupacional}
+                        inputRef={inputRefs.historicoAcompanhamentosProTerapiaOcupacional}
                     />
                     <CheckBoxInput
                         TittleInput={'Fisioterapia'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProFisioterapia}
+                        inputRef={inputRefs.historicoAcompanhamentosProFisioterapia}
                     />
                     <CheckBoxInput
                         TittleInput={'Neuropsicologia'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProNeuropsicologia}
+                        inputRef={inputRefs.historicoAcompanhamentosProNeuropsicologia}
                     />
                     <CheckBoxInput
                         TittleInput={'Psicomotricidade'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProPsicomotricidade}
+                        inputRef={inputRefs.historicoAcompanhamentosProPsicomotricidade}
                     />
                     <CheckBoxInput
                         TittleInput={'Musicoterapia'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProMusicoterapia}
+                        inputRef={inputRefs.historicoAcompanhamentosProMusicoterapia}
                     />
                     <CheckBoxInput
                         TittleInput={'Nutricionista'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProNutricionista}
+                        inputRef={inputRefs.historicoAcompanhamentosProNutricionista}
                     />
                     <CheckBoxInput
                         TittleInput={'Avaliação Neuropsicológica'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProAvaliaçãoNeuropsicológica}
+                        inputRef={inputRefs.historicoAcompanhamentosProAvaliaçãoNeuropsicológica}
                     />
                     <CheckBoxInput
                         TittleInput={'Geneticista'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProGeneticista}
+                        inputRef={inputRefs.historicoAcompanhamentosProGeneticista}
                     />
                     <CheckBoxInput
                         TittleInput={'Psiquiatra'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProPsiquiatra}
+                        inputRef={inputRefs.historicoAcompanhamentosProPsiquiatra}
                     />
                     <CheckBoxInput
                         TittleInput={'Dentista'}
                         NameCheckInput={'acompanhamentos'}
                         IdCheckInput={'acompanhamentos'}
-                        inputRef={inputRefs.AcompanhamentosProDentista}
+                        inputRef={inputRefs.historicoAcompanhamentosProDentista}
                     />
                 </div>
 
                 <SimpleTextInput
                     TittleInput={'Observações acerca dos acompanhamentos anteriores'}
                     placeholder={'Escreva as observações aqui.'}
-                    inputRef={inputRefs.observacoesAcompanhamentosAnteriores}
+                    inputRef={inputRefs.historicoAcompanhamentoshistoricoGestacionalObservacoesAcompanhamentosAnteriores}
                 />
             </div>
         </div>

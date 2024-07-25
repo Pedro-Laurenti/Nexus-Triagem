@@ -5,12 +5,12 @@ import SelectPage from './pages/SelectPage';
 import FormPage from './pages/FormPage';
 
 interface Profissional {
-    id: number;
-    nome: string;
-    senha: string;
-    especialidade: string;
-    formação: string;
-    NdoConselho: string;
+    profissionalId: number;
+    profissionalNome: string;
+    profissionalSenha: string;
+    profissionalEspecialidade: string;
+    profissionalFormacao: string;
+    profissionalNdoConselho: string;
 }
 
 const App: React.FC = () => {
@@ -19,20 +19,28 @@ const App: React.FC = () => {
 
     useEffect(() => {
         setProfissionais(profissionaisData);
+
+        // Verifica se há dados armazenados e preenche o estado
+        const storedProfissionalId = localStorage.getItem('profissionalId');
+        if (storedProfissionalId) {
+            const profissionalId = parseInt(storedProfissionalId, 10);
+            const profissionalSelecionado = profissionaisData.find(p => p.profissionalId === profissionalId) || null;
+            setProfissionalSelecionado(profissionalSelecionado);
+        }
     }, []);
 
     const handleProfissionalChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
         const profissionalId = parseInt(event.target.value, 10);
         const profissionalSelecionado = profissionais.find(
-            (profissional) => profissional.id === profissionalId
+            (profissional) => profissional.profissionalId === profissionalId
         ) || null;
 
         setProfissionalSelecionado(profissionalSelecionado);
     };
 
     return (
-        <div className='App'>
-            <div className='APPCONTEUDO h-screen'>
+        <div className='App w-full'>
+            <div className='APPCONTEUDO w-full '>
                 <Router>
                     <Routes>
                         <Route
@@ -45,7 +53,11 @@ const App: React.FC = () => {
                             }
                         />
                         <Route
-                            path="/form"
+                            path="formulario"
+                            element={<FormPage profissionalSelecionado={profissionalSelecionado} />}
+                        />
+                        <Route
+                            path="/inicio"
                             element={<FormPage profissionalSelecionado={profissionalSelecionado} />}
                         />
                     </Routes>

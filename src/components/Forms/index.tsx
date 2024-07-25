@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import FormSection1 from './FormSection1';
 import FormSection2 from './FormSection2';
 import FormSection3 from './FormSection3';
@@ -9,12 +9,12 @@ import FormSection7 from './FormSection7';
 import Tabs from '../Tabs';
 
 interface Profissional {
-    id: number;
-    nome: string;
-    senha: string;
-    especialidade: string;
-    formação: string;
-    NdoConselho: string;
+    profissionalId: number;
+    profissionalNome: string;
+    profissionalSenha: string;
+    profissionalEspecialidade: string;
+    profissionalFormacao: string;
+    profissionalNdoConselho: string;
 }
 
 interface FormIndexProps {
@@ -39,57 +39,90 @@ const FormIndex: React.FC<FormIndexProps> = ({ profissional, idForm }) => {
         'Saúde',
     ];
 
+    // Initialize refs for each input
     const inputRefs: InputRefs = {
-        ProfissionalNome: useRef<HTMLInputElement>(null),
-        ProfissionalEspecialidade: useRef<HTMLInputElement>(null),
-        ProfissionalNdoConselho: useRef<HTMLInputElement>(null),
-        ProfissionalFormação: useRef<HTMLInputElement>(null),
-        nome: useRef<HTMLInputElement>(null),
-        dataNascimento: useRef<HTMLInputElement>(null),
-        peso: useRef<HTMLInputElement>(null),
-        altura: useRef<HTMLInputElement>(null),
-        nomePai: useRef<HTMLInputElement>(null),
-        nomeMãe: useRef<HTMLInputElement>(null),
+        profissionalNome: useRef<HTMLInputElement>(null),
+        profissionalEspecialidade: useRef<HTMLInputElement>(null),
+        profissionalNdoConselho: useRef<HTMLInputElement>(null),
+        profissionalFormacao: useRef<HTMLInputElement>(null),
+        identificaçãoNomePaciente: useRef<HTMLInputElement>(null),
+        identificaçãoDataNascimentoPaciente: useRef<HTMLInputElement>(null),
+        identificaçãoPesoPaciente: useRef<HTMLInputElement>(null),
+        identificaçãoAlturaPaciente: useRef<HTMLInputElement>(null),
+        identificaçãoNomePaiPaciente: useRef<HTMLInputElement>(null),
+        identificaçãoNomeMãePaciente: useRef<HTMLInputElement>(null),
         contato: useRef<HTMLInputElement>(null),
-        irmãos: useRef<HTMLTextAreaElement>(null),
-        Radio1IndicaçãoDiagnóstica: useRef<HTMLTextAreaElement>(null),
-        Radio1HipóteseDiagnóstica: useRef<HTMLTextAreaElement>(null),
-        Radio1DiagnósticoConcluido: useRef<HTMLTextAreaElement>(null),
-        observacoesDiagnosticos: useRef<HTMLTextAreaElement>(null),
-        DisciplinasReqPsicologia: useRef<HTMLTextAreaElement>(null),
-        DisciplinasReqTerapiaOcupacional: useRef<HTMLTextAreaElement>(null),
-        DisciplinasReqFisioterapia: useRef<HTMLTextAreaElement>(null),
-        DisciplinasReqMusicoterapia: useRef<HTMLTextAreaElement>(null),
-        DisciplinasReqFonoaudiologia: useRef<HTMLTextAreaElement>(null),
-        DisciplinasReqNeuropsicologia: useRef<HTMLTextAreaElement>(null),
-        DisciplinasReqPsicomotricidade: useRef<HTMLTextAreaElement>(null),
-        NomeEncaminhadoPor: useRef<HTMLTextAreaElement>(null),
-        DataUltimaConsulta: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProPsicologia: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProFonoaudiologia: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProTerapiaOcupacional: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProFisioterapia: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProNeuropsicologia: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProPsicomotricidade: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProMusicoterapia: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProNutricionista: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProAvaliaçãoNeuropsicológica: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProGeneticista: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProPsiquiatra: useRef<HTMLTextAreaElement>(null),
-        AcompanhamentosProDentista: useRef<HTMLTextAreaElement>(null),
-        observacoesAcompanhamentosAnteriores: useRef<HTMLTextAreaElement>(null),
-        DemandasPrincipais: useRef<HTMLTextAreaElement>(null),
-        selectedGestacao: useRef<HTMLTextAreaElement>(null),
-        selectedParto: useRef<HTMLTextAreaElement>(null),
-        Apgar1: useRef<HTMLTextAreaElement>(null),
-        Apgar2: useRef<HTMLTextAreaElement>(null),
-        PesoAoNascer: useRef<HTMLTextAreaElement>(null),
-        AlturaAoNascer: useRef<HTMLTextAreaElement>(null),
-        ObservacoesAcompanhamentos: useRef<HTMLTextAreaElement>(null),
-        ObservacoesPertinentes: useRef<HTMLTextAreaElement>(null),
+        identificaçãoIrmaosPacientePaciente: useRef<HTMLTextAreaElement>(null),
+        diagnosticoIndicaçãoDiagnóstica: useRef<HTMLTextAreaElement>(null),
+        diagnosticoHipoteseDiagnostica: useRef<HTMLTextAreaElement>(null),
+        diagnosticoDiagnosticoConcluido: useRef<HTMLTextAreaElement>(null),
+        diagnosticoObservacoesDiagnosticos: useRef<HTMLTextAreaElement>(null),
+        disciplinasReqPsicologia: useRef<HTMLTextAreaElement>(null),
+        disciplinasReqTerapiaOcupacional: useRef<HTMLTextAreaElement>(null),
+        disciplinasReqFisioterapia: useRef<HTMLTextAreaElement>(null),
+        disciplinasReqMusicoterapia: useRef<HTMLTextAreaElement>(null),
+        disciplinasReqFonoaudiologia: useRef<HTMLTextAreaElement>(null),
+        disciplinasReqNeuropsicologia: useRef<HTMLTextAreaElement>(null),
+        disciplinasReqPsicomotricidade: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosNomeEncaminhadoPor: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosDataUltimaConsulta: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProPsicologia: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProFonoaudiologia: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProTerapiaOcupacional: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProFisioterapia: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProNeuropsicologia: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProPsicomotricidade: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProMusicoterapia: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProNutricionista: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProAvaliaçãoNeuropsicológica: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProGeneticista: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProPsiquiatra: useRef<HTMLTextAreaElement>(null),
+        historicoAcompanhamentosProDentista: useRef<HTMLTextAreaElement>(null),
+        historicoGestacionalObservacoesAcompanhamentosAnteriores: useRef<HTMLTextAreaElement>(null),
+        demandasPrincipais: useRef<HTMLTextAreaElement>(null),
+        historicoGestacionalIdadeParto: useRef<HTMLTextAreaElement>(null),
+        historicoGestacionalTipoParto: useRef<HTMLTextAreaElement>(null),
+        historicoGestacionalApgar1: useRef<HTMLTextAreaElement>(null),
+        historicoGestacionalApgar2: useRef<HTMLTextAreaElement>(null),
+        historicoGestacionalPesoAoNascer: useRef<HTMLTextAreaElement>(null),
+        historicoGestacionalAlturaAoNascer: useRef<HTMLTextAreaElement>(null),
+        historicoGestacionalObservacoesAcompanhamentos: useRef<HTMLTextAreaElement>(null),
+        historicoGestacionalObservacoesPertinentes: useRef<HTMLTextAreaElement>(null),
     };
 
-    const formSection7Ref = useRef<{ getData: () => Selection[] }>(null);
+    // Load form data from localStorage when component mounts
+    useEffect(() => {
+        const savedData = localStorage.getItem('formData');
+        if (savedData) {
+            const parsedData = JSON.parse(savedData);
+            Object.keys(parsedData).forEach((key) => {
+                if (inputRefs[key as keyof InputRefs]?.current) {
+                    inputRefs[key as keyof InputRefs]!.current!.value = parsedData[key];
+                }
+            });
+        }
+    }, []);
+
+    // Save form data to localStorage whenever inputs change
+    useEffect(() => {
+        const handleBeforeUnload = () => {
+            const formData = Object.keys(inputRefs).reduce((acc, key) => {
+                const ref = inputRefs[key as keyof InputRefs];
+                if (ref.current) {
+                    acc[key] = ref.current.value;
+                }
+                return acc;
+            }, {} as { [key: string]: any });
+
+            localStorage.setItem('formData', JSON.stringify(formData));
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
 
     const handleGeneratePDF = () => {
         const formData = Object.keys(inputRefs).reduce((values, key) => {
@@ -99,11 +132,6 @@ const FormIndex: React.FC<FormIndexProps> = ({ profissional, idForm }) => {
             }
             return values;
         }, {} as { [key: string]: any });
-
-        if (formSection7Ref.current) {
-            formData['FormSection7'] = formSection7Ref.current.getData();
-        }
-
         console.log('formData:', formData);
     };
 
@@ -111,13 +139,29 @@ const FormIndex: React.FC<FormIndexProps> = ({ profissional, idForm }) => {
         <div className="bg-white p-5 flex flex-col items-center" id={idForm}>
             <Tabs tabs={tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
 
-            {selectedTab === 0 && <FormSection1 inputRefs={inputRefs} profissional={profissional} />}
-            {selectedTab === 1 && <FormSection2 inputRefs={inputRefs} />}
-            {selectedTab === 2 && <FormSection3 inputRefs={inputRefs} />}
-            {selectedTab === 3 && <FormSection4 inputRefs={inputRefs} />}
-            {selectedTab === 4 && <FormSection5 inputRefs={inputRefs} />}
-            {selectedTab === 5 && <FormSection6 inputRefs={inputRefs} />}
-            {selectedTab === 6 && <FormSection7 inputRefs={formSection7Ref} />}
+            <div className="tab-content">
+                <div style={{ display: selectedTab === 0 ? 'block' : 'none' }}>
+                    <FormSection1 inputRefs={inputRefs} profissional={profissional} />
+                </div>
+                <div style={{ display: selectedTab === 1 ? 'block' : 'none' }}>
+                    <FormSection2 inputRefs={inputRefs} />
+                </div>
+                <div style={{ display: selectedTab === 2 ? 'block' : 'none' }}>
+                    <FormSection3 inputRefs={inputRefs} />
+                </div>
+                <div style={{ display: selectedTab === 3 ? 'block' : 'none' }}>
+                    <FormSection4 inputRefs={inputRefs} />
+                </div>
+                <div style={{ display: selectedTab === 4 ? 'block' : 'none' }}>
+                    <FormSection5 inputRefs={inputRefs} />
+                </div>
+                <div style={{ display: selectedTab === 5 ? 'block' : 'none' }}>
+                    <FormSection6 inputRefs={inputRefs} />
+                </div>
+                <div style={{ display: selectedTab === 6 ? 'block' : 'none' }}>
+                    <FormSection7 inputRefs={inputRefs} />
+                </div>
+            </div>
 
             <button onClick={handleGeneratePDF} className="bg-green-500 text-white px-5 py-2 rounded-lg">
                 Gerar PDF

@@ -120,26 +120,26 @@ interface FormData {
 }
 
 const labelMapping: { [key: string]: string } = {
-    'DisciplinasReqPsicologia': 'Psicologia',
-    'DisciplinasReqTerapiaOcupacional': 'Terapia Ocupacional',
-    'DisciplinasReqFisioterapia': 'Fisioterapia',
-    'DisciplinasReqMusicoterapia': 'Musicoterapia',
-    'DisciplinasReqFonoaudiologia': 'Fonoaudiologia',
-    'DisciplinasReqNeuropsicologia': 'Neuropsicologia',
-    'DisciplinasReqPsicomotricidade': 'Psicomotricidade',
+    'disciplinasReqPsicologia': 'Psicologia',
+    'disciplinasReqTerapiaOcupacional': 'Terapia Ocupacional',
+    'disciplinasReqFisioterapia': 'Fisioterapia',
+    'disciplinasReqMusicoterapia': 'Musicoterapia',
+    'disciplinasReqFonoaudiologia': 'Fonoaudiologia',
+    'disciplinasReqNeuropsicologia': 'Neuropsicologia',
+    'disciplinasReqPsicomotricidade': 'Psicomotricidade',
 
-    'AcompanhamentosProPsicologia': 'Psicologia',
-    'AcompanhamentosProFonoaudiologia': 'Fonoaudiologia',
-    'AcompanhamentosProTerapiaOcupacional': 'Terapia Ocupacional',
-    'AcompanhamentosProFisioterapia': 'Fisioterapia',
-    'AcompanhamentosProNeuropsicologia': 'Neuropsicologia',
-    'AcompanhamentosProPsicomotricidade': 'Psicomotricidade',
-    'AcompanhamentosProMusicoterapia': 'Musicoterapia',
-    'AcompanhamentosProNutricionista': 'Nutricionista',
-    'AcompanhamentosProAvaliaçãoNeuropsicológica': 'Avaliação Neuropsicológica',
-    'AcompanhamentosProGeneticista': 'Geneticista',
-    'AcompanhamentosProPsiquiatra': 'Psiquiatra',
-    'AcompanhamentosProDentista': 'Dentista',
+    'historicoAcompanhamentosProPsicologia': 'Psicologia',
+    'historicoAcompanhamentosProFonoaudiologia': 'Fonoaudiologia',
+    'historicoAcompanhamentosProTerapiaOcupacional': 'Terapia Ocupacional',
+    'historicoAcompanhamentosProFisioterapia': 'Fisioterapia',
+    'historicoAcompanhamentosProNeuropsicologia': 'Neuropsicologia',
+    'historicoAcompanhamentosProPsicomotricidade': 'Psicomotricidade',
+    'historicoAcompanhamentosProMusicoterapia': 'Musicoterapia',
+    'historicoAcompanhamentosProNutricionista': 'Nutricionista',
+    'historicoAcompanhamentosProAvaliaçãoNeuropsicológica': 'Avaliação Neuropsicológica',
+    'historicoAcompanhamentosProGeneticista': 'Geneticista',
+    'historicoAcompanhamentosProPsiquiatra': 'Psiquiatra',
+    'historicoAcompanhamentosProDentista': 'Dentista',
 };
 
 ipcMain.handle('generate-pdf', async (_event, formData: FormData) => {
@@ -164,8 +164,8 @@ ipcMain.handle('generate-pdf', async (_event, formData: FormData) => {
         let acompanhamentosContent = '';
 
         for (const [key, value] of Object.entries(formData)) {
-            if (key.startsWith('DisciplinasReq') && value) {
-                const disciplinaName = labelMapping[key] || key.replace('DisciplinasReq', '');
+            if (key.startsWith('disciplinasReq') && value) {
+                const disciplinaName = labelMapping[key] || key.replace('disciplinasReq', '');
                 disciplinasContent += `<li>${disciplinaName}</li>`;
             }
             if (key.startsWith('AcompanhamentosPro') && value) {

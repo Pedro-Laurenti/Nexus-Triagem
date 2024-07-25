@@ -8,12 +8,12 @@ import IrmãosInput from '../FormComponents/IrmãosInput';
 import NumInput from '../FormComponents/NumInput';
 
 interface Profissional {
-    id: number;
-    nome: string;
-    senha: string;
-    especialidade: string;
-    formação: string;
-    NdoConselho: string;
+    profissionalId: number;
+    profissionalNome: string;
+    profissionalSenha: string;
+    profissionalEspecialidade: string;
+    profissionalFormacao: string;
+    profissionalNdoConselho: string;
 }
 
 interface FormSection1Props {
@@ -29,32 +29,32 @@ const FormSection1: React.FC<FormSection1Props> = ({ profissional, inputRefs }) 
     const [validDate, setValidDate] = useState(true);
 
     return (
-        <div>
+        <div className='w-full'>
             <TittleForm Tittle={'1. IDENTIFICAÇÃO'} />
             <div className="py-2 px-8">
                 <SubtittleForm SubTittle={'Identificação de Autoria:'} />
                 <InlineInputFixed
                     TittleInput={'Profissional'}
-                    valueInputFixed={profissional.nome}
-                    inputRef={inputRefs.ProfissionalNome}
+                    valueInputFixed={profissional.profissionalNome}
+                    inputRef={inputRefs.profissionalNome}
                     PlaceHolder='Nome do profissional'
                 />
                 <InlineInputFixed
                     TittleInput={'Especialidade'}
-                    valueInputFixed={profissional.especialidade}
-                    inputRef={inputRefs.ProfissionalEspecialidade}
+                    valueInputFixed={profissional.profissionalEspecialidade}
+                    inputRef={inputRefs.profissionalEspecialidade}
                     PlaceHolder='Especialidade'
                 />
                 <InlineInputFixed
                     TittleInput={'Nº do Conselho'}
-                    valueInputFixed={profissional.NdoConselho}
-                    inputRef={inputRefs.ProfissionalNdoConselho}
+                    valueInputFixed={profissional.profissionalNdoConselho}
+                    inputRef={inputRefs.profissionalNdoConselho}
                     PlaceHolder='Nº do conselho'
                 />
                 <InlineInputFixed
                     TittleInput={'Formação'}
-                    valueInputFixed={profissional.formação}
-                    inputRef={inputRefs.ProfissionalFormação}
+                    valueInputFixed={profissional.profissionalFormacao}
+                    inputRef={inputRefs.profissionalFormacao}
                     PlaceHolder='Formação do profissional'
                 />
             </div>
@@ -65,7 +65,7 @@ const FormSection1: React.FC<FormSection1Props> = ({ profissional, inputRefs }) 
                 <InlineInput
                     TittleInput={'Nome do paciente'}
                     PlaceHolder={'Nome'}
-                    inputRef={inputRefs.nome}
+                    inputRef={inputRefs.identificaçãoNomePaciente}
                 />
 
                 <DateInputOutput
@@ -76,7 +76,7 @@ const FormSection1: React.FC<FormSection1Props> = ({ profissional, inputRefs }) 
                     setAge={setAge}
                     validDate={validDate}
                     setValidDate={setValidDate}
-                    inputRef={inputRefs.dataNascimento}
+                    inputRef={inputRefs.identificaçãoDataNascimentoPaciente}
                 />
 
                 <div className="border border-slate-300 rounded px-4 py-2 w-full text-slate-600 mb-4">
@@ -92,32 +92,32 @@ const FormSection1: React.FC<FormSection1Props> = ({ profissional, inputRefs }) 
                         PlaceHolder={'00,00 kg'}
                         maxValue={500}
                         maxAlgarismo={6}
-                        inputRef={inputRefs.peso}
+                        inputRef={inputRefs.identificaçãoPesoPaciente}
                     />
                     <NumInput
                         TittleInput={'Altura'}
                         PlaceHolder={'00,00 m'}
                         maxValue={2}
                         maxAlgarismo={6}
-                        inputRef={inputRefs.altura}
+                        inputRef={inputRefs.identificaçãoAlturaPaciente}
                     />
                 </div>
 
                 <InlineInput
                     TittleInput={'Nome do pai'}
                     PlaceHolder={'Nome'}
-                    inputRef={inputRefs.nomePai}
+                    inputRef={inputRefs.identificaçãoNomePaiPaciente}
                 />
 
                 <InlineInput
                     TittleInput={'Nome da mãe'}
                     PlaceHolder={'Nome'}
-                    inputRef={inputRefs.nomeMãe}
+                    inputRef={inputRefs.identificaçãoNomeMãePaciente}
                 />
 
                 <ContactInput TittleInput={'Contato dos responsáveis'} inputRef={inputRefs.contato} />
 
-                <IrmãosInput ref={inputRefs.irmãos} />
+                <IrmãosInput ref={inputRefs.identificaçãoIrmaosPacientePaciente} />
             </div>
         </div>
     );

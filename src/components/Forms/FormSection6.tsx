@@ -34,7 +34,7 @@ const FormSection6: React.FC<FormSection6Props> = ({ inputRefs }) => {
         }
     ]
 
-    const tipodeParto = [
+    const tipoParto = [
         {
             options: [
                 { value: 'Cesáreo', content: 'Cesáreo' },
@@ -144,9 +144,9 @@ const FormSection6: React.FC<FormSection6Props> = ({ inputRefs }) => {
 
             <TittleForm Tittle={'6. HISTÓRICO GESTACIONAL E NATAL'} />
             <div className="py-2 px-8 mb-5">
-                <GroupSelectInput titleInput="Semanas de gestação:" options={idadeParto} inputRef={inputRefs.selectedGestacao} />
+                <GroupSelectInput titleInput="Semanas de gestação:" options={idadeParto} inputRef={inputRefs.historicoGestacionalIdadeParto} />
 
-                <GroupSelectInput titleInput="Tipo de parto" options={tipodeParto} inputRef={inputRefs.selectedParto} />
+                <GroupSelectInput titleInput="Tipo de parto" options={tipoParto} inputRef={inputRefs.historicoGestacionalTipoParto} />
 
                 <div className="flex flex-row gap-6 items-center">
                     <NumInput
@@ -154,14 +154,14 @@ const FormSection6: React.FC<FormSection6Props> = ({ inputRefs }) => {
                         PlaceHolder={'1 - 10'}
                         maxValue={10}
                         maxAlgarismo={2}
-                        inputRef={inputRefs.Apgar1}
+                        inputRef={inputRefs.historicoGestacionalApgar1}
                     />
                     <NumInput
                         TittleInput={'APGAR 5º min:'}
                         PlaceHolder={'1 - 10'}
                         maxValue={10}
                         maxAlgarismo={2}
-                        inputRef={inputRefs.Apgar2}
+                        inputRef={inputRefs.historicoGestacionalApgar2}
                     />
                 </div>
                 <div className="flex flex-row gap-6 items-center">
@@ -170,33 +170,34 @@ const FormSection6: React.FC<FormSection6Props> = ({ inputRefs }) => {
                         PlaceHolder={'Ex: 1000,5 g'}
                         maxValue={7000}
                         maxAlgarismo={5}
-                        inputRef={inputRefs.PesoAoNascer}
+                        inputRef={inputRefs.historicoGestacionalPesoAoNascer}
                     />
                     <NumInput
                         TittleInput={'Altura ao Nascer:'}
                         PlaceHolder={'1 - 10'}
                         maxValue={80}
                         maxAlgarismo={2}
-                        inputRef={inputRefs.AlturaAoNascer}
+                        inputRef={inputRefs.historicoGestacionalAlturaAoNascer}
                     />
                 </div>
 
-                <BooleanRadioInput questions={boolGestacao} />
+                <BooleanRadioInput questions={boolGestacao} /> {/* ERRO AQUI */}
 
                 <SubtittleForm SubTittle={'Intercorrências/complicações:'} />
-                <BooleanRadioInput questions={boolComplicacoes} />
 
-                <TriagemNeonatal initialCheckboxes={triagemNeonatal} />
+                <BooleanRadioInput questions={boolComplicacoes} /> {/* ERRO AQUI */}
+
+                <TriagemNeonatal initialCheckboxes={triagemNeonatal} /> {/* ERRO AQUI */}
 
                 <SimpleTextInput
                     TittleInput={'Observações acerca dos acompanhamentos anteriores'}
                     placeholder={'Escreva as observações aqui.'}
-                    inputRef={inputRefs.ObservacoesAcompanhamentos}
+                    inputRef={inputRefs.historicoGestacionalObservacoesAcompanhamentos}
                 />
                 <SimpleTextInput
                     TittleInput={'Observações Pertinentes'}
                     placeholder={'Escreva as observações aqui.'}
-                    inputRef={inputRefs.ObservacoesPertinentes}
+                    inputRef={inputRefs.historicoGestacionalObservacoesPertinentes}
                 />
             </div>
 

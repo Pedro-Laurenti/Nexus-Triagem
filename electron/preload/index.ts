@@ -70,13 +70,13 @@ function useLoading() {
             to { opacity: 0; }
         }
         .app-loading-wrap {
-            position: absolute;
+            position: fixed;
             display: flex;
             justify-content: space-around;
             background: rgba(40, 44, 52, 0.8);
-            z-index: 9;
+            z-index: 500;
             opacity: 1;
-            bottom:0;
+            bottom: 0;
             transition: opacity 0.5s;
             width: 100%;
         }

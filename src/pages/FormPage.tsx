@@ -4,12 +4,12 @@ import Form from '../components/Forms';
 import LogoTLK from '../assets/1-2-logo-white.svg';
 
 interface Profissional {
-    id: number;
-    nome: string;
-    senha: string;
-    especialidade: string;
-    formação: string;
-    NdoConselho: string;
+    profissionalId: number;
+    profissionalNome: string;
+    profissionalSenha: string;
+    profissionalEspecialidade: string;
+    profissionalFormacao: string;
+    profissionalNdoConselho: string;
 }
 
 interface FormPageProps {
@@ -20,7 +20,7 @@ const FormPage: React.FC<FormPageProps> = ({ profissionalSelecionado }) => {
     const navigate = useNavigate();
 
     return (
-        <div className="bg-slate-200 h-screen">
+        <div className="bg-slate-200">
             <div className="bg-sky-500 h-30 w-full py-5 px-20 text-white grid grid-cols-2 gap-4 place-items-center align-bottom">
                 <div className="text-center">
                     <h2 className="text-4xl font-extrabold">TRIAGEM INICIAL</h2>
