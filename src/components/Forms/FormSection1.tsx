@@ -115,9 +115,9 @@ const FormSection1: React.FC<FormSection1Props> = ({ profissional, inputRefs }) 
                     inputRef={inputRefs.identificaçãoNomeMãePaciente}
                 />
 
-                <ContactInput TittleInput={'Contato dos responsáveis'} inputRef={inputRefs.contato} />
+                <ContactInput TittleInput={'Contato dos responsáveis'} inputRef={inputRefs.identificaçãoContatoPaciente} />
 
-                <IrmãosInput ref={inputRefs.identificaçãoIrmaosPacientePaciente} />
+                <IrmãosInput ref={inputRefs.identificaçãoIrmaosPaciente} />
             </div>
         </div>
     );

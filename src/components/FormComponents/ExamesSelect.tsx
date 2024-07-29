@@ -1,153 +1,105 @@
 import React, { useState } from 'react';
 
-interface SelectOption {
-    id: string;
+interface Option {
     label: string;
     options: string[];
-    selected: string;
-    radios: string[];
-    selectedRadio?: string;
 }
 
-interface ExamesSelectProps {
-    initialSelects: SelectOption[];
-    onUpdate: (updatedSelects: SelectOption[]) => void;
+interface QuestionProps {
+    content: Option;
+    inputRefs: { [key: string]: React.RefObject<HTMLInputElement> };
 }
 
-const ExamesSelect: React.FC<ExamesSelectProps> = ({ initialSelects }) => {
-    const [selects, setSelects] = useState(initialSelects);
+export const Question: React.FC<QuestionProps> = ({ content, inputRefs }) => {
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [checkboxStates, setCheckboxStates] = useState<{ [key: string]: boolean }>({});
+    const [radioStates, setRadioStates] = useState<{ [key: string]: string | null }>({});
 
-    const handleSelectChange = (index: number, selected: string) => {
-        const updatedSelects = [...selects];
-        updatedSelects[index].selected = selected;
-        setSelects(updatedSelects);
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedOption(e.target.value);
+        if (e.target.value === "Não realizou") {
+            content.options.forEach(option => {
+                setCheckboxStates(prevState => ({
+                    ...prevState,
+                    [option]: false
+                }));
+                setRadioStates(prevState => ({
+                    ...prevState,
+                    [option]: null
+                }));
+            });
+        }
     };
 
-    const handleRadioChange = (index: number, selectedRadio: string) => {
-        const updatedSelects = [...selects];
-        updatedSelects[index].selectedRadio = selectedRadio;
-        setSelects(updatedSelects);
+    const handleCheckboxChange = (option: string) => {
+        setCheckboxStates((prevState) => ({
+            ...prevState,
+            [option]: !prevState[option],
+        }));
+        setRadioStates((prevState) => ({
+            ...prevState,
+            [option]: null
+        }));
+    };
+
+    const handleRadioChange = (option: string, value: string) => {
+        setRadioStates((prevState) => ({
+            ...prevState,
+            [option]: value,
+        }));
     };
 
     return (
         <div>
-            <h2>Exames Select</h2>
-            {selects.map((select, index) => (
-                <div key={select.id} className="mb-4">
-                    <label>
-                        {select.label}
-                        <select
-                            value={select.selected}
-                            onChange={(e) => handleSelectChange(index, e.target.value)}
-                            className="ml-2 border border-slate-300 rounded px-4 py-2 text-slate-600 mb-4"
-                        >
-                            {select.options.map((option) => (
-                                <option key={option} value={option}>
-                                    {option}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                    {select.selected === 'Sim' && (
-                        <div className="ml-4">
-                            {select.radios.map((radio) => (
-                                <label key={radio} className="flex items-center">
+            <h3>{content.label}</h3>
+            <select onChange={handleSelectChange}>
+                <option value="">Selecione</option>
+                <option value="Realizou">Realizou</option>
+                <option value="Não realizou">Não realizou</option>
+            </select>
+
+            {selectedOption === 'Realizou' &&
+                content.options.map((option) => (
+                    <div key={option}>
+                        <label>
+                            <input
+                                type="checkbox"
+                                ref={inputRefs[option + "_checkbox"]}
+                                onChange={() => handleCheckboxChange(option)}
+                                checked={checkboxStates[option] || false}
+                            />
+                            {option}
+                        </label>
+                        {checkboxStates[option] && (
+                            <div>
+                                <label>
                                     <input
                                         type="radio"
-                                        name={`radio-${select.id}`}
-                                        value={radio}
-                                        checked={select.selectedRadio === radio}
-                                        onChange={() => handleRadioChange(index, radio)}
-                                        className="mr-2"
+                                        name={option}
+                                        value="Alterado"
+                                        ref={inputRefs[option + "_alterado"]}
+                                        checked={radioStates[option] === 'Alterado'}
+                                        onChange={() => handleRadioChange(option, 'Alterado')}
                                     />
-                                    {radio}
+                                    Alterado
                                 </label>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            ))}
-        </div>
-    );
-};
-
-export default ExamesSelect;
-
-/*
-
-
-interface SelectOption {
-    id: string;
-    label: string;
-    options: string[];
-    selected: string;
-    radios: string[];
-    selectedRadio?: string;
-}
-
-interface ExamesSelectProps {
-    initialSelects: SelectOption[];
-    onUpdate: (updatedSelects: SelectOption[]) => void;
-}
-
-
-    export const ExamesSelect: React.FC<ExamesSelectProps> = ({ initialSelects, onUpdate }) => {
-        const [selects, setSelects] = useState(initialSelects);
-
-        const handleSelectChange = (index: number, selected: string) => {
-            const updatedSelects = [...selects];
-            updatedSelects[index].selected = selected;
-            setSelects(updatedSelects);
-            onUpdate(updatedSelects); // Notify parent component of the update
-        };
-
-        const handleRadioChange = (index: number, selectedRadio: string) => {
-            const updatedSelects = [...selects];
-            updatedSelects[index].selectedRadio = selectedRadio;
-            setSelects(updatedSelects);
-            onUpdate(updatedSelects); // Notify parent component of the update
-        };
-
-        return (
-            <div>
-                <h2>Exames Select</h2>
-                {selects.map((select, index) => (
-                    <div key={select.id} className="mb-4">
-                        <label>
-                            {select.label}
-                            <select
-                                value={select.selected}
-                                onChange={(e) => handleSelectChange(index, e.target.value)}
-                                className="ml-2 border border-slate-300 rounded px-4 py-2 text-slate-600 mb-4"
-                            >
-                                {select.options.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}
-                                    </option>
-                                ))}
-                            </select>
-                        </label>
-                        {select.selected === 'Sim' && (
-                            <div className="ml-4">
-                                {select.radios.map((radio) => (
-                                    <label key={radio} className="flex items-center">
-                                        <input
-                                            type="radio"
-                                            name={`radio-${select.id}`}
-                                            value={radio}
-                                            checked={select.selectedRadio === radio}
-                                            onChange={() => handleRadioChange(index, radio)}
-                                            className="mr-2"
-                                        />
-                                        {radio}
-                                    </label>
-                                ))}
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name={option}
+                                        value="Não alterado"
+                                        ref={inputRefs[option + "_nao_alterado"]}
+                                        checked={radioStates[option] === 'Não alterado'}
+                                        onChange={() => handleRadioChange(option, 'Não alterado')}
+                                    />
+                                    Não alterado
+                                </label>
                             </div>
                         )}
                     </div>
                 ))}
-            </div>
-        );
-    };
+        </div>
+    );
+};
 
-*/
+export default Question;

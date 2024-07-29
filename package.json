@@ -1,6 +1,6 @@
 {
     "name": "formulario-triagem",
-    "version": "2.5.2",
+    "version": "2.5.3",
     "description": "Formulário de triagem infantil para avaliações.",
     "main": "dist-electron/main/index.js",
     "author": "Pedro Laurenti",

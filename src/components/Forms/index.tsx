@@ -23,7 +23,7 @@ interface FormIndexProps {
 }
 
 type InputRefs = {
-    [key: string]: React.RefObject<HTMLInputElement | HTMLTextAreaElement>;
+    [key: string]: any;
 };
 
 const FormIndex: React.FC<FormIndexProps> = ({ profissional, idForm }) => {
@@ -51,7 +51,7 @@ const FormIndex: React.FC<FormIndexProps> = ({ profissional, idForm }) => {
         identificaçãoAlturaPaciente: useRef<HTMLInputElement>(null),
         identificaçãoNomePaiPaciente: useRef<HTMLInputElement>(null),
         identificaçãoNomeMãePaciente: useRef<HTMLInputElement>(null),
-        contato: useRef<HTMLInputElement>(null),
+        identificaçãoContatoPaciente: useRef<HTMLInputElement>(null),
         identificaçãoIrmaosPacientePaciente: useRef<HTMLTextAreaElement>(null),
         diagnosticoIndicaçãoDiagnóstica: useRef<HTMLTextAreaElement>(null),
         diagnosticoHipoteseDiagnostica: useRef<HTMLTextAreaElement>(null),
@@ -90,31 +90,66 @@ const FormIndex: React.FC<FormIndexProps> = ({ profissional, idForm }) => {
         historicoGestacionalObservacoesPertinentes: useRef<HTMLTextAreaElement>(null),
     };
 
+    // Add refs for FormSection7 inputs
+    const section7Refs: InputRefs = {};
+    const section7Questions = [
+        'Audiometria',
+        'Imitanciometria',
+        'PEATE / BERA',
+        'Emissão Otoacústicas',
+        'Acuidade Visual',
+        'Tonometria',
+        'Eletrocardiograma',
+        'Eletroencefalograma',
+        'Eletromiografia',
+        'Potenciais Evocados',
+        'Espirometria',
+        'Capacidade Vital Forçada',
+        'Volume respiratório',
+        'Teste de Broncodilatação',
+        'Tomografia toráxica'
+    ];
+
+    section7Questions.forEach((question) => {
+        section7Refs[question + "_checkbox"] = useRef<HTMLInputElement>(null);
+        section7Refs[question + "_alterado"] = useRef<HTMLInputElement>(null);
+        section7Refs[question + "_nao_alterado"] = useRef<HTMLInputElement>(null);
+    });
+
+    const allInputRefs = { ...inputRefs, ...section7Refs };
+
     // Load form data from localStorage when component mounts
     useEffect(() => {
         const savedData = localStorage.getItem('formData');
         if (savedData) {
             const parsedData = JSON.parse(savedData);
+            console.log('Dados carregados do localStorage:', parsedData);
             Object.keys(parsedData).forEach((key) => {
-                if (inputRefs[key as keyof InputRefs]?.current) {
-                    inputRefs[key as keyof InputRefs]!.current!.value = parsedData[key];
+                if (allInputRefs[key as keyof InputRefs]?.current) {
+                    allInputRefs[key as keyof InputRefs]!.current!.value = parsedData[key];
+                    allInputRefs[key as keyof InputRefs]!.current!.checked = parsedData[key] === "true";
                 }
             });
         }
-    }, []);
+    }, [allInputRefs]);
 
     // Save form data to localStorage whenever inputs change
     useEffect(() => {
         const handleBeforeUnload = () => {
-            const formData = Object.keys(inputRefs).reduce((acc, key) => {
-                const ref = inputRefs[key as keyof InputRefs];
+            const formData = Object.keys(allInputRefs).reduce((acc, key) => {
+                const ref = allInputRefs[key as keyof InputRefs];
                 if (ref.current) {
-                    acc[key] = ref.current.value;
+                    if (ref.current.type === 'checkbox' || ref.current.type === 'radio') {
+                        acc[key] = ref.current.checked.toString();
+                    } else {
+                        acc[key] = ref.current.value;
+                    }
                 }
                 return acc;
             }, {} as { [key: string]: any });
 
             localStorage.setItem('formData', JSON.stringify(formData));
+            console.log('Dados salvos no localStorage:', formData);
         };
 
         window.addEventListener('beforeunload', handleBeforeUnload);
@@ -122,17 +157,25 @@ const FormIndex: React.FC<FormIndexProps> = ({ profissional, idForm }) => {
         return () => {
             window.removeEventListener('beforeunload', handleBeforeUnload);
         };
-    }, []);
+    }, [allInputRefs]);
 
     const handleGeneratePDF = () => {
-        const formData = Object.keys(inputRefs).reduce((values, key) => {
-            const ref = inputRefs[key as keyof InputRefs];
+        const formData = Object.keys(allInputRefs).reduce((values, key) => {
+            const ref = allInputRefs[key as keyof InputRefs];
             if (ref.current) {
-                values[key] = ref.current.value;
+                if (ref.current.type === 'checkbox' || ref.current.type === 'radio') {
+                    values[key] = ref.current.checked.toString();
+                } else {
+                    values[key] = ref.current.value;
+                }
             }
             return values;
         }, {} as { [key: string]: any });
-        console.log('formData:', formData);
+        console.log('Dados do formulário:', formData);
+
+        // Adicione a lógica para geração do PDF aqui
+        // Por exemplo: 
+        // generatePDF(formData);
     };
 
     return (
@@ -159,7 +202,7 @@ const FormIndex: React.FC<FormIndexProps> = ({ profissional, idForm }) => {
                     <FormSection6 inputRefs={inputRefs} />
                 </div>
                 <div style={{ display: selectedTab === 6 ? 'block' : 'none' }}>
-                    <FormSection7 inputRefs={inputRefs} />
+                    <FormSection7 inputRefs={allInputRefs} />
                 </div>
             </div>
 
