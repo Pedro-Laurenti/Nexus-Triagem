@@ -96,7 +96,7 @@ const FormSection6: React.FC<FormSection6Props> = ({ inputRefs }) => {
                 </div>
 
                 <GroupSelectInput titleInput="Gestação foi planejada?" options={basicbool} inputRef={inputRefs.historicoGestacionalInfosPlanejada} />
-                <GroupSelectInput titleInput="Gestação foi desejada?" options={basicbool} inputRef={inputRefs.historicoGestacionalInfosPlanejada} />
+                <GroupSelectInput titleInput="Gestação foi desejada?" options={basicbool} inputRef={inputRefs.historicoGestacionalInfosDesejada} />
                 <GroupSelectTextInput 
                     titleInput="Uso de substâncias durante a gestação?"
                     options={CondicionalQuest}

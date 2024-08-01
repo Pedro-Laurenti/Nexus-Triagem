@@ -8,8 +8,8 @@ interface OptionGroup {
 interface GroupSelectTextInputProps {
     titleInput: string;
     options: OptionGroup[];
-    inputRef: React.Ref<HTMLSelectElement>;
-    inputRef2: React.Ref<HTMLInputElement>;
+    inputRef: React.RefObject<HTMLSelectElement>;
+    inputRef2: React.RefObject<HTMLInputElement>;
 }
 
 const GroupSelectTextInput: React.FC<GroupSelectTextInputProps> = ({ titleInput, options, inputRef, inputRef2 }) => {
@@ -53,16 +53,16 @@ const GroupSelectTextInput: React.FC<GroupSelectTextInputProps> = ({ titleInput,
                     </optgroup>
                 ))}
             </select>
-            {isKeyOptionSelected && (
-                <input
-                    type="text"
-                    className="border border-slate-300 rounded px-4 py-2 w-full text-slate-600 mb-6"
-                    value={textValue}
-                    onChange={handleTextChange}
-                    placeholder="Digite aqui..."
-                    ref={inputRef2}
-                />
-            )}
+            <input
+                type="text"
+                className="border border-slate-300 rounded px-4 py-2 w-full text-slate-600 mb-6"
+                value={textValue}
+                onChange={handleTextChange}
+                placeholder="Digite aqui..."
+                ref={inputRef2}
+                disabled={!isKeyOptionSelected} // Desabilitar o input se não for uma opção-chave
+                style={{ color: isKeyOptionSelected ? 'inherit' : 'gray', backgroundColor: isKeyOptionSelected ? 'white' : '#f0f0f0' }} // Estilo para aparência cinza
+            />
         </label>
     );
 };

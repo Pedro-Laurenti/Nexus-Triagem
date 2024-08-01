@@ -1,13 +1,15 @@
-2.6.0
+2.6.1
 
 ## TODO LIST
 
 1. Implement main functions to pages 6 and 7
-    - Save in localstorage
+    - Save in localstorage 
     - Load from localstorage
     - Save in external JSON
     - Load from external JSON
     - Handle in "GeneratePDF"
+
+2. Implement new fields to form
 
 2. Organize the current order of inputs and sections following:
 
@@ -17,15 +19,15 @@
     - Identificação do profissional
     - Identificação do paciente
 
-2. Histórico
-    - Histórico gestacional e natal
-    - Histórico de Saúde
-    - Histórico de Acompanhamento
-
-3. Diagnóstico
+2. Diagnóstico
     - Demandas Relatadas
     - Diagnóstico/Hipótese diagnóstica
     - Disciplinas requeridas
+
+3. Histórico
+    - Histórico gestacional e natal
+    - Histórico de Saúde
+    - Histórico de Acompanhamento
 
 ---
 

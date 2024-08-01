@@ -155,13 +155,13 @@ const FormIndex: React.FC<FormIndexProps> = ({ profissional, idForm }) => {
         'Teste de Broncodilatação',
         'Tomografia toráxica'
     ];
-
+    
     section7Questions.forEach((question) => {
         section7Refs[question + "_checkbox"] = useRef<HTMLInputElement>(null);
         section7Refs[question + "_alterado"] = useRef<HTMLInputElement>(null);
         section7Refs[question + "_nao_alterado"] = useRef<HTMLInputElement>(null);
     });
-
+    
     const allInputRefs: InputRefs = {
         ...section1Refs,
         ...section2Refs,
@@ -212,13 +212,13 @@ const FormIndex: React.FC<FormIndexProps> = ({ profissional, idForm }) => {
                 }
                 return acc;
             }, {} as Record<string, string>);
-        
+
             localStorage.setItem('formData', JSON.stringify(formData));
             console.log('Dados salvos no localStorage:', formData);
         };
-        
+
         window.addEventListener('beforeunload', handleBeforeUnload);
-        
+
         return () => {
             window.removeEventListener('beforeunload', handleBeforeUnload);
         };

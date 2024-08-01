@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 
 interface CheckboxConditionalInputProps {
     TituloCheckbox: string;
@@ -12,26 +12,20 @@ const CheckboxConditionalInput: React.FC<CheckboxConditionalInputProps> = ({ Tit
     const [selectedSecondary, setSelectedSecondary] = useState<'alterado' | 'nãoAlterado' | null>(null);
 
     const handleMainCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsMainChecked(event.target.checked);
-        if (!event.target.checked) {
+        const isChecked = event.target.checked;
+        setIsMainChecked(isChecked);
+        if (!isChecked) {
             setSelectedSecondary(null); // Desmarcar opções secundárias se o principal for desmarcado
         }
     };
 
-    const handleSecondaryChange = (type: 'alterado' | 'nãoAlterado') => () => {
-        setSelectedSecondary(type);
+    const handleSecondaryChange = (type: 'alterado' | 'nãoAlterado') => (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.checked) {
+            setSelectedSecondary(type);
+        } else {
+            setSelectedSecondary(null);
+        }
     };
-
-    useEffect(() => {
-        if (mainCheckboxRef.current) {
-            setIsMainChecked(mainCheckboxRef.current.checked);
-        }
-        if (alteredCheckboxRef.current?.checked) {
-            setSelectedSecondary('alterado');
-        } else if (notAlteredCheckboxRef.current?.checked) {
-            setSelectedSecondary('nãoAlterado');
-        }
-    }, [mainCheckboxRef, alteredCheckboxRef, notAlteredCheckboxRef]);
 
     return (
         <div>
@@ -44,27 +38,25 @@ const CheckboxConditionalInput: React.FC<CheckboxConditionalInputProps> = ({ Tit
                 />
                 {TituloCheckbox}
             </label>
-            <div style={{ height: isMainChecked ? 'auto' : '0', overflow: 'hidden' }}>
-                <div className="mb-6">
-                    <label>
-                        <input
-                            type="checkbox"
-                            ref={alteredCheckboxRef}
-                            checked={selectedSecondary === 'alterado'}
-                            onChange={handleSecondaryChange('alterado')}
-                        />
-                        Alterado
-                    </label>
-                    <label className="ml-4">
-                        <input
-                            type="checkbox"
-                            ref={notAlteredCheckboxRef}
-                            checked={selectedSecondary === 'nãoAlterado'}
-                            onChange={handleSecondaryChange('nãoAlterado')}
-                        />
-                        Não Alterado
-                    </label>
-                </div>
+            <div className="mb-6">
+                <label style={{ color: isMainChecked ? 'inherit' : 'gray' }}>
+                    <input
+                        type="checkbox"
+                        ref={alteredCheckboxRef}
+                        checked={selectedSecondary === 'alterado'}
+                        onChange={handleSecondaryChange('alterado')}
+                    />
+                    Alterado
+                </label>
+                <label className="ml-4" style={{ color: isMainChecked ? 'inherit' : 'gray' }}>
+                    <input
+                        type="checkbox"
+                        ref={notAlteredCheckboxRef}
+                        checked={selectedSecondary === 'nãoAlterado'}
+                        onChange={handleSecondaryChange('nãoAlterado')}
+                    />
+                    Não Alterado
+                </label>
             </div>
         </div>
     );
