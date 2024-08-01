@@ -105,7 +105,7 @@ const FormSection4: React.FC<FormSection4Props> = ({ inputRefs }) => {
                 <SimpleTextInput
                     TittleInput={'Observações acerca dos acompanhamentos anteriores'}
                     placeholder={'Escreva as observações aqui.'}
-                    inputRef={inputRefs.historicoAcompanhamentoshistoricoGestacionalObservacoesAcompanhamentosAnteriores}
+                    inputRef={inputRefs.historicoAcompanhamentosObservacoes}
                 />
             </div>
         </div>

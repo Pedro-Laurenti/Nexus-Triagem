@@ -1,11 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { SubtittleForm, TittleForm } from '../Tittles';
-import BooleanRadioInput from '../FormComponents/BooleanRadioInput';
 import GroupSelectInput from '../FormComponents/GroupSelectInput';
+import GroupSelectTextInput from '../FormComponents/GroupSelectTextInput';
 import NumInput from '../FormComponents/NumInput';
 import SimpleTextInput from '../FormComponents/SimpleTextInput';
-import TriagemNeonatal from '../FormComponents/TriagemNeonatal';
-
+import CheckboxConditionalInput from '../FormComponents/CheckboxConditionalInput';
 
 interface FormSection6Props{
     inputRefs: {
@@ -44,100 +43,23 @@ const FormSection6: React.FC<FormSection6Props> = ({ inputRefs }) => {
         }
     ]
 
-    const boolGestacao = [
+    const basicbool = [
         {
-            question: 'A gestação foi planejada?',
-            name: 'gestacao-planejada',
-            options: ['Sim', 'Não']
-        },
+            options: [
+                { value: 'Sim', content: 'Sim' },
+                { value: 'Não', content: 'Não' }
+            ]
+        }
+    ]
+
+    const CondicionalQuest = [
         {
-            question: 'A gestação foi desejada?',
-            name: 'gestacao-desejada',
-            options: ['Sim', 'Não']
-        },
-        {
-            question: 'Uso de substâncias durante a gestação?',
-            name: 'gestacao-substancias',
-            options: ['Sim', 'Não'],
-            followUp: {
-                value: 'sim',
-                question: 'Quais?',
-                inputType: 'text',
-                name: 'gestacao-substanciasdetalhes',
-                ref: useRef(null)
-            }
+            options: [
+                { value: "Não", content: "Não" },
+                { value: "Sim", content: "Sim", isKeyOption: true },
+            ]
         }
     ];
-
-    const boolComplicacoes = [
-        {
-            question: 'Durante o período de gestação?',
-            name: 'complicacoes-durantegestacao',
-            options: ['Sim', 'Não'],
-            followUp: {
-                value: 'sim',
-                question: 'Quais?',
-                inputType: 'text',
-                name: 'complicacoes1Details',
-                ref: useRef(null)
-            }
-        },
-        {
-            question: 'Durante o parto?',
-            name: 'complicacoes-duranteparto',
-            options: ['Sim', 'Não'],
-            followUp: {
-                value: 'sim',
-                question: 'Quais?',
-                inputType: 'text',
-                name: 'complicacoes2Details',
-                ref: useRef(null)
-            }
-        },
-        {
-            question: 'Após o nascimento?',
-            name: 'complicacoes-aposnascimento',
-            options: ['Sim', 'Não'],
-            followUp: {
-                value: 'sim',
-                question: 'Quais?',
-                inputType: 'text',
-                name: 'complicacoes3Details',
-                ref: useRef(null)
-            }
-        }
-    ];
-
-    const triagemNeonatal = [
-        {   id: 'Neonatal-pezinho',
-            name: 'Neonatal-pezinho',
-            label: 'Teste do Pezinho',
-            radios: ['Normal', 'Alterado'],
-            isChecked: false
-        },
-        { 
-            id: 'Neonatal-olhinho',
-            name: 'Neonatal-olhinho',
-            label: 'Teste do Olhinho',
-            radios: ['Normal', 'Alterado'],
-            isChecked: false
-        },
-        {
-            id: 'Neonatal-orelhinha',
-            name: 'Neonatal-orelhinha',
-            label: 'Teste da Orelhinha',
-            radios: ['Normal', 'Alterado'],
-            isChecked: false
-        },
-        {
-            id: 'Neonatal-linguinha',
-            name: 'Neonatal-linguinha',
-            label: 'Teste da Linguinha',
-            radios: ['Normal', 'Alterado'],
-            isChecked: false
-        }
-    ];
-
 
     return (
         <div>
@@ -152,15 +74,11 @@ const FormSection6: React.FC<FormSection6Props> = ({ inputRefs }) => {
                     <NumInput
                         TittleInput={'APGAR 1º min:'}
                         PlaceHolder={'1 - 10'}
-                        maxValue={10}
-                        maxAlgarismo={2}
                         inputRef={inputRefs.historicoGestacionalApgar1}
                     />
                     <NumInput
                         TittleInput={'APGAR 5º min:'}
                         PlaceHolder={'1 - 10'}
-                        maxValue={10}
-                        maxAlgarismo={2}
                         inputRef={inputRefs.historicoGestacionalApgar2}
                     />
                 </div>
@@ -168,32 +86,85 @@ const FormSection6: React.FC<FormSection6Props> = ({ inputRefs }) => {
                     <NumInput
                         TittleInput={'Peso ao Nascer:'}
                         PlaceHolder={'Ex: 1000,5 g'}
-                        maxValue={7000}
-                        maxAlgarismo={5}
                         inputRef={inputRefs.historicoGestacionalPesoAoNascer}
                     />
                     <NumInput
                         TittleInput={'Altura ao Nascer:'}
                         PlaceHolder={'1 - 10'}
-                        maxValue={80}
-                        maxAlgarismo={2}
                         inputRef={inputRefs.historicoGestacionalAlturaAoNascer}
                     />
                 </div>
 
-                <BooleanRadioInput questions={boolGestacao} /> {/* ERRO AQUI */}
+                <GroupSelectInput titleInput="Gestação foi planejada?" options={basicbool} inputRef={inputRefs.historicoGestacionalInfosPlanejada} />
+                <GroupSelectInput titleInput="Gestação foi desejada?" options={basicbool} inputRef={inputRefs.historicoGestacionalInfosPlanejada} />
+                <GroupSelectTextInput 
+                    titleInput="Uso de substâncias durante a gestação?"
+                    options={CondicionalQuest}
+                    inputRef={inputRefs.historicoGestacionalInfosUsodeSubstancia}
+                    inputRef2={inputRefs.historicoGestacionalInfosQuaisSubstacias}
+                />
 
                 <SubtittleForm SubTittle={'Intercorrências/complicações:'} />
 
-                <BooleanRadioInput questions={boolComplicacoes} /> {/* ERRO AQUI */}
+                <GroupSelectTextInput 
+                    titleInput="Durante o período de gestação?"
+                    options={CondicionalQuest}
+                    inputRef={inputRefs.historicoGestacionalComplicDurantePeriodo}
+                    inputRef2={inputRefs.historicoGestacionalComplicQuaisDurantePeriodo}
+                />
 
-                <TriagemNeonatal initialCheckboxes={triagemNeonatal} /> {/* ERRO AQUI */}
+                <GroupSelectTextInput 
+                    titleInput="Durante o parto?"
+                    options={CondicionalQuest}
+                    inputRef={inputRefs.historicoGestacionalComplicDuranteParto}
+                    inputRef2={inputRefs.historicoGestacionalComplicQuaisDuranteParto}
+                />
+
+                <GroupSelectTextInput 
+                    titleInput="Após o nascimento?"
+                    options={CondicionalQuest}
+                    inputRef={inputRefs.historicoGestacionalComplicAposNascimento}
+                    inputRef2={inputRefs.historicoGestacionalComplicQuaisAposNascimento}
+                />
+
+                <SubtittleForm SubTittle={'Triagem neonatal'} />
+
+                <CheckboxConditionalInput
+                    mainCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalPezinho}
+                    notAlteredCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalPezinhoNormal}
+                    alteredCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalPezinhoAlterado}
+                    TituloCheckbox={"Teste do Olhinho"}
+                />
+
+                <CheckboxConditionalInput
+                    mainCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalOlhinho}
+                    notAlteredCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalOlhinhoNormal}
+                    alteredCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalOlhinhoAlterado}
+                    TituloCheckbox={"Teste do Pezinho"}
+                />
+
+                <CheckboxConditionalInput
+                    mainCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalOrelhinha}
+                    notAlteredCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalOrelhinhaNormal}
+                    alteredCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalOrelhinhaAlterado}
+                    TituloCheckbox={"Teste da Orelhinha"}
+                />
+
+                <CheckboxConditionalInput
+                    mainCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalLinguinha}
+                    notAlteredCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalLinguinhaNormal}
+                    alteredCheckboxRef={inputRefs.historicoGestacionalTriagemNeonatalLinguinhaAlterado}
+                    TituloCheckbox={"Teste da Linguinha"}
+                />
+
+                <SubtittleForm SubTittle={'Observações'} />
 
                 <SimpleTextInput
                     TittleInput={'Observações acerca dos acompanhamentos anteriores'}
                     placeholder={'Escreva as observações aqui.'}
                     inputRef={inputRefs.historicoGestacionalObservacoesAcompanhamentos}
                 />
+
                 <SimpleTextInput
                     TittleInput={'Observações Pertinentes'}
                     placeholder={'Escreva as observações aqui.'}

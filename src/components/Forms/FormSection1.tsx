@@ -19,7 +19,7 @@ interface Profissional {
 interface FormSection1Props {
     profissional: Profissional;
     inputRefs: {
-        [key: string]: any;
+        [key: string]: React.RefObject<HTMLInputElement>;
     };
 }
 
@@ -77,28 +77,18 @@ const FormSection1: React.FC<FormSection1Props> = ({ profissional, inputRefs }) 
                     validDate={validDate}
                     setValidDate={setValidDate}
                     inputRef={inputRefs.identificaçãoDataNascimentoPaciente}
+                    inputRefIdade={inputRefs.identificaçãoIdadePaciente}
                 />
-
-                <div className="border border-slate-300 rounded px-4 py-2 w-full text-slate-600 mb-4">
-                    {validDate
-                        ? `${age.years !== null ? `${age.years} anos, ${age.months} meses e ${age.days} dias` : 'Idade calculada'}`
-                        : 'Inválido: data posterior ao dia de hoje'
-                    }
-                </div>
 
                 <div className="grid grid-cols-2 gap-4 place-items-begin align-bottom">
                     <NumInput
                         TittleInput={'Peso'}
                         PlaceHolder={'00,00 kg'}
-                        maxValue={500}
-                        maxAlgarismo={6}
                         inputRef={inputRefs.identificaçãoPesoPaciente}
                     />
                     <NumInput
                         TittleInput={'Altura'}
                         PlaceHolder={'00,00 m'}
-                        maxValue={2}
-                        maxAlgarismo={6}
                         inputRef={inputRefs.identificaçãoAlturaPaciente}
                     />
                 </div>
@@ -117,7 +107,7 @@ const FormSection1: React.FC<FormSection1Props> = ({ profissional, inputRefs }) 
 
                 <ContactInput TittleInput={'Contato dos responsáveis'} inputRef={inputRefs.identificaçãoContatoPaciente} />
 
-                <IrmãosInput ref={inputRefs.identificaçãoIrmaosPaciente} />
+                {/* <IrmãosInput inputRef={inputRefs.identificaçãoIrmaosPaciente} /> */}
             </div>
         </div>
     );
